@@ -13,7 +13,7 @@ if __name__ == "__main__":
     OUTPUT_PATH = sys.argv[2] # model.npy
     
     
-    df_test = pd.read_csv(INPUT_PATH, encoding='ANSI', header=None)
+    df_test = pd.read_csv(INPUT_PATH, encoding='Big5', header=None)
     
     df_test1 = pd.DataFrame(index= pd.MultiIndex.from_product([list(df_test[0].unique()), list(df_test.columns[2:])]), 
                    columns=list(df_test[1].unique()))

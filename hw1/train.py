@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # #!/bin/bash
 # python3 train.py ./data/train.csv model.npy
 
@@ -5,22 +6,26 @@ import sys
 import numpy as np
 import pandas as pd
 import math
-
+import os
 if __name__ == "__main__":
     INPUT_PATH = sys.argv[1] # train.csv
     MODEL_PATH = sys.argv[2] # model.npy
     
-    df = pd.read_csv(INPUT_PATH, encoding='ANSI')
-    df1 = pd.DataFrame(index= pd.MultiIndex.from_product([list(df['日期'].unique()), list(df.columns[3:])]), 
-                   columns=list(df['測項'].unique()))
+    #f = open(INPUT_PATH)
+    #os.chdir(os.path.dirname(INPUT_PATH))
+    df = pd.read_csv(INPUT_PATH, encoding='Big5')
+    #os.chdir(pwd)
+    df1 = pd.DataFrame(index=
+            pd.MultiIndex.from_product([list(df['日期'].unique()),
+                list(df.columns[3:])]), columns=list(df['測項'].unique()))
     del df['測站']
 
     df.set_index('日期',inplace=True)
-    
+    print ('Start filling df1...')
     for i in df1.index:
         for c in df1.columns:
             df1.loc[i, c] = df[ df['測項']==c ].loc[ i[0], i[1] ]
-        
+    print ('Finish filling df1')
     del df1['RAINFALL']
     df1_float = pd.DataFrame.copy(df1.astype('float'))    
     
@@ -42,7 +47,7 @@ if __name__ == "__main__":
     train_y = 0
     train_x_null = True
     train_y_null = True
-    
+    print ('build train_x...')
     for df_no in dflist:
         for i in df_no.index:
             if (i+9) <= len(df_no.index)-1:
@@ -70,7 +75,7 @@ if __name__ == "__main__":
     LearningRate = 0.1
     NumberofIteration = 400000
     
-    
+    print ("Start Training...")
     for i in range(NumberofIteration):
         y_ = np.dot(train_x_bias, train_w).reshape(train_y.shape)
         L = y_ - train_y
@@ -81,7 +86,7 @@ if __name__ == "__main__":
     
         cost = np.sum(L**2) / train_x_bias.shape[0]
         cost_a  = math.sqrt(cost)
-        #print ('iteration: %d | Cost: %f  ' % ( i,cost_a))    
+        print ('iteration: %d | Cost: %f  ' % ( i,cost_a))    
     
 
     
