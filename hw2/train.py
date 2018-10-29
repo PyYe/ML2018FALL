@@ -21,7 +21,7 @@ def train(w, X, b):
     z = np.dot(w, X.T) + b
     # Put z into simoid function.
     y = sigmoid(z)
-    y_pred = (y.reshape((y.shape[0],1)) > 0.5).astype(np.int)
+    y_pred = (y > 0.5).astype(np.int)
     return y_pred
 
 if __name__ == "__main__":
@@ -48,21 +48,22 @@ if __name__ == "__main__":
     
     ###calculate mu
     #mu_0
-    mu_0 = np.sum(df_train_class0_x.values, axis=0)/len(df_train_class0_x.index)
+    mu_0 = (np.sum(df_train_class0_x.values, axis=0)/len(df_train_class0_x.index)).reshape((df_train_class0_x.values.shape[1], 1))
     #mu_1
-    mu_1 = np.sum(df_train_class1_x.values, axis=0)/len(df_train_class1_x.index)
+    mu_1 = (np.sum(df_train_class1_x.values, axis=0)/len(df_train_class1_x.index)).reshape((df_train_class1_x.values.shape[1], 1))
     
     ###calculate sigma
     #sigma_0
     s_0 = np.zeros( (mu_0.shape[0], mu_0.shape[0]) )
     for x_0 in df_train_class0_x.values:
+        x_0 = x_0.reshape((df_train_class0_x.values.shape[1], 1))
         s_0 += np.dot(x_0-mu_0, (x_0-mu_0).T)
-    
+
     sigma_0 = s_0/len(df_train_class0_x.index)
-    
     #sigma_1 = np.sum(df_train_class1_x.values, axis=0)/len(df_train_class1_x.index)
     s_1 = np.zeros( (mu_1.shape[0], mu_1.shape[0]) )
     for x_1 in df_train_class1_x.values:
+        x_1 = x_1.reshape((df_train_class1_x.values.shape[1], 1))
         s_1 += np.dot(x_1-mu_1, (x_1-mu_1).T)
     
     sigma_1 = s_1/len(df_train_class1_x.index)

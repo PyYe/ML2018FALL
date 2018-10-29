@@ -12,7 +12,7 @@ def train(w, X, b):
     z = np.dot(w, X.T) + b
     # Put z into simoid function.
     y = sigmoid(z)
-    y_pred = (y.reshape((y.shape[0],1)) > 0.5).astype(np.int)
+    y_pred = (y > 0.5).astype(np.int)
     return y_pred
 
 if __name__ == "__main__":
@@ -30,10 +30,11 @@ if __name__ == "__main__":
     test_y_predict = train(w, df_test_x.values, b)
     
     idlist = []
-    for i in range(test_y_predict.shape[0]):
+    for i in range(test_y_predict.shape[1]):
         idlist.append('id_'+str(i))
     
     df_submission = pd.DataFrame({'id':idlist,
                                   'value': test_y_predict.flatten()  })
+    df_submission
     
     df_submission.to_csv(OUTPUT_PATH,index=False)
