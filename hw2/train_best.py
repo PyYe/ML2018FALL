@@ -147,8 +147,11 @@ if __name__ == "__main__":
     df_train_x_onehot['PAY_AMT6'] = (df_train_x['PAY_AMT6'] - minmaxarray[13,0] ) / (minmaxarray[13,0]+minmaxarray[13,1])
     
     ### produce train_x, train_y
-    train_x = df_train_x_onehot.values
-    train_y = df_train_y.values
+    train_x = df_train_x_onehot.values[:15000, :]
+    valid_x = df_train_x_onehot.values[15000:, :]
+    
+    train_y = df_train_y.values[:15000, :]
+    valid_y = df_train_y.values[15000:, :]
     #add bias
     train_x_bias = np.concatenate(((np.zeros(train_x.shape[0])+1).reshape((train_x.shape[0],1)), train_x ), axis=1)
     
