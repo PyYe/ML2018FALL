@@ -13,8 +13,8 @@ if __name__ == "__main__":
     INPUT_PATH = sys.argv[1] # ~/data/test_x.csv
     OUTPUT_PATH = sys.argv[2] # ~/result/ans.csv
     INPUT_X_PATH = sys.argv[3] # ~/data/train_x.csv
-    MODEL_W_PATH = 'model_w.npy' # model_w.npy
-    MODEL_minmaxarray_PATH = 'minmaxarray.npy' # 'minmaxarray.npy' for mean normalization
+    MODEL_W_PATH = 'model_w_best.npy' # model_w.npy
+    MODEL_minmaxarray_PATH = 'minmaxarray_best.npy' # 'minmaxarray.npy' for mean normalization
     
     df_test_x = pd.read_csv(INPUT_PATH)
     train_w = np.load(MODEL_W_PATH)
