@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 test_best.py $3 $4
+python3 test_best.py $3 $4 $1

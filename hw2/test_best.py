@@ -10,15 +10,17 @@ def sigmoid(z):
     return 1/(1+np.exp(-z))
 
 if __name__ == "__main__":
-    INPUT_X_PATH = sys.argv[1] # ~/data/test_x.csv
+    INPUT_PATH = sys.argv[1] # ~/data/test_x.csv
     OUTPUT_PATH = sys.argv[2] # ~/result/ans.csv
+    INPUT_X_PATH = sys.argv[3] # ~/data/train_x.csv
     MODEL_W_PATH = 'model_w.npy' # model_w.npy
     MODEL_minmaxarray_PATH = 'minmaxarray.npy' # 'minmaxarray.npy' for mean normalization
     
-    df_test_x = pd.read_csv(INPUT_X_PATH)
+    df_test_x = pd.read_csv(INPUT_PATH)
     train_w = np.load(MODEL_W_PATH)
     minmaxarray = np.load(MODEL_minmaxarray_PATH)
-    
+    df_train_x = pd.read_csv(INPUT_X_PATH)
+    df_x = pd.concat([df_train_x, df_test_x], axis = 0)
     df_test_x_onehot = pd.DataFrame(index=df_test_x.index)
     
     ###one-hot encoding
