@@ -52,7 +52,7 @@ if __name__ == "__main__":
     jieba.set_dictionary(DICT_PATH)  # Change dictionary (Optional)
     test_sentences = [list(jieba.cut(s, cut_all=False)) for s in test_sentences]
     
-    emb_model = Word2Vec.load(w2v)
+    emb_model = Word2Vec.load(w2v_model)
     
     # Convert words to index
     test_sentences_list = []
