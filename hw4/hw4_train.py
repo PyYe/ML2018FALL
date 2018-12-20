@@ -56,9 +56,11 @@ if __name__ == "__main__":
     MODEL = 'ta_addtest_test8_LSTMGRU.h5'
     ### Read files
     # train files
+    print ('Loading train files ...')
     train_sentences, train_labels = load_data(TRAIN_X_PATH, TRAIN_Y_PATH)    
     
     # test file
+    print ('Loading test file ...')
     with open(TEST_X_PATH, 'r', encoding='utf-8') as f:
         readin = f.readlines()
         # Use regular expression to get rid of the index
@@ -66,19 +68,23 @@ if __name__ == "__main__":
         
     sentences = train_sentences + test_sentences
     
+    
     jieba.set_dictionary(DICT_PATH)  # Change dictionary (Optional)
+    print ('Jieba cutting all sets ...')
     sentences = [list(jieba.cut(s, cut_all=False)) for s in sentences]
 
     # Train Word2Vec model
+    print ('Training Word2Vec model ...')
     emb_model = Word2Vec(sentences, size=emb_dim)
     emb_model.save(w2v_model)
     
-    
+    print ('Jieba cutting train set ...')
     train_sentences = [list(jieba.cut(s, cut_all=False)) for s in train_sentences]
     
     num_words = len(emb_model.wv.vocab) + 1  # +1 for OOV words
     emb_dim = emb_model.vector_size
     # Create embedding matrix (For Keras)
+    print ('Creating embedding matrix (For Keras) ...')
     emb_matrix = np.zeros((num_words, emb_dim), dtype=float)
     for i in range(num_words - 1):
         v = emb_model.wv[emb_model.wv.index2word[i]]
@@ -95,10 +101,10 @@ if __name__ == "__main__":
     train_sequences = pad_sequences(train_sequences, maxlen=max_length)
     
     # Split validation data (#TODO)
-    X_train = train_sequences[:int(len(labels)*0.9)]
-    X_val = train_sequences[int(len(labels)*0.9):]
-    Y_train = labels[:int(len(labels)*0.9)]
-    Y_val = labels[int(len(labels)*0.9):]
+    X_train = train_sequences[:int(len(train_labels)*0.9)]
+    X_val = train_sequences[int(len(train_labels)*0.9):]
+    Y_train = train_labels[:int(len(train_labels)*0.9)]
+    Y_val = train_labels[int(len(train_labels)*0.9):]
     
     
     model = Sequential()
@@ -120,11 +126,7 @@ if __name__ == "__main__":
     model.add(Dense(1, activation='sigmoid'))
     model.summary()
     
-    ### Ensemble Models
-    # Example1: 
-    #   - model.add(LSTM(100, recurrent_dropout=0.5))
-    #   - model.add(Dense(1, activation='sigmoid'))
-    
+   
     #########################################################
     
     # Setting optimizer and compile the model
@@ -134,7 +136,7 @@ if __name__ == "__main__":
                   metrics=['accuracy'])
     # Setting callback functions
     epochs = 2
-    batch_size = 256
+    batch_size = 32
     #csv_logger = CSVLogger(LOGGER)
     checkpoint = ModelCheckpoint(filepath=MODEL,
                                  verbose=1,
@@ -147,6 +149,7 @@ if __name__ == "__main__":
                                   mode='max')
                                  
     # Pre_train the model without embedding layers
+    print ('Fitting first time...')
     fitHistory = model.fit(X_train, Y_train, 
               validation_data=(X_val, Y_val),
               epochs=epochs, 
@@ -165,7 +168,7 @@ if __name__ == "__main__":
         
     ### training
     epochs = 1000
-    batch_size = 256
+    batch_size = 32
     #csv_logger = CSVLogger(LOGGER)
     checkpoint = ModelCheckpoint(filepath=MODEL,
                                  verbose=1,
@@ -178,6 +181,7 @@ if __name__ == "__main__":
                                   mode='max')
                                  
     # Train the model
+    print ('Fitting last time...')
     fitHistory = model.fit(X_train, Y_train, 
               validation_data=(X_val, Y_val),
               epochs=epochs, 
