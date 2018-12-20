@@ -53,7 +53,7 @@ if __name__ == "__main__":
     
     w2v_model = 'w2v_ta_addtest.h5'
     emb_dim = 256
-    MODEL = 'ta_addtest_test8_LSTMGRU.h5'
+    MODEL = 'ta_addtest_test7_LSTMGRU.h5'
     ### Read files
     # train files
     print ('Loading train files ...')
