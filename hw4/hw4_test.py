@@ -40,7 +40,7 @@ if __name__ == "__main__":
        
     w2v_model = 'w2v_ta_addtest.h5'
     emb_dim = 256
-    MODELlist = ['ta_addtest_test2_LSTMGRU.h5', 'ta_addtest_test4_LSTMLSTM.h5', 'ta_addtest_test7_LSTMGRU.h5', 'ta_addtest_test8_LSTMGRU.h5', 'ta_addtest_test9_LSTMGRU.h5']
+    rnn_model = 'ta_addtest_test7_LSTMGRU.h5'
     
     ### Read files
     # test file
@@ -66,17 +66,8 @@ if __name__ == "__main__":
     
     X_test = test_sentences_array
     
-    firsttime = True
-    for m in MODELlist:
-        model = load_model(m)
-        Y_pred = model.predict(X_test, verbose=1)
-        if firsttime:
-            Y_pred_sum = Y_pred
-            firsttime = False
-        else:
-            Y_pred_sum += Y_pred
-        
-    Y_pred = Y_pred_sum / len(MODELlist)
+    model = load_model(rnn_model)
+    Y_pred = model.predict(X_test, verbose=1)
     pred_y_label = np.array([1 if y>0.5 else 0 for y in Y_pred])
     
     idlist = []
