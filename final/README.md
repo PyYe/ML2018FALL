@@ -29,19 +29,19 @@ bash download.sh
 * data_preprocessing.ipynb
 * data_analysis.ipynb
 
-* 為train的檔案 可不執行 直接用dropbox下載下來的model
+* 為train的檔案 可不執行 直接用dropbox下載下來的model  
 ** test1_notgenerator.ipynb
 
 * test1_notgenerator_TTA_thre.ipynb
 * test1_notgenerator_TTA_test.ipynb
 
-* 為train的檔案 可不執行 直接用dropbox下載下來的model
+* 為train的檔案 可不執行 直接用dropbox下載下來的model  
 ** test3_notgenerator_densenet201_dense.ipynb
 
 * test3_notgenerator_densenet201_dense_TTA_thre.ipynb
 * test3_notgenerator_densenet201_dense_TTA_test.ipynb
 
-* 為train的檔案 可不執行 直接用dropbox下載下來的model
+* 為train的檔案 可不執行 直接用dropbox下載下來的model  
 ** test5_notgenerator_DenseNet169_dense.ipynb
 
 * test5_notgenerator_densenet169_dense_TTA_thre.ipynb
