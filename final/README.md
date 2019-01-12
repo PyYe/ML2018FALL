@@ -4,11 +4,11 @@ windows 10 anaconda3 jupyter notebook python3.6.6
 # Download files on dropbox
 bash download.sh
 # Folders information
-./src/data   將kaggle上的data zips 解壓縮並存在這個資料夾
-./src/ensemble  執行ensemble處
-./src/model  存train好的model
-./src/preprocessed_data 存前處理過的data
-./src/result 存結果        
+./src/data   將kaggle上的data zips 解壓縮並存在這個資料夾  
+./src/ensemble  執行ensemble處  
+./src/model  存train好的model  
+./src/preprocessed_data 存前處理過的data  
+./src/result 存結果    
 		
 # externel tools:
 
