@@ -48,6 +48,7 @@ bash download.sh
 * test5_notgenerator_densenet169_dense_TTA_test.ipynb
 
 # Ensemble
+將./src/result中的檔案 複製到 ./src/ensemble/data裡
 執行 ./src/ensemble/ensemble.ipynb
 
 # 最後上傳kaggle檔案
