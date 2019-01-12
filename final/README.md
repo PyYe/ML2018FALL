@@ -1,11 +1,11 @@
 # 執行環境 資料夾必須為
 * └── final
-*     └── src
-*         ├── data
-*         ├── ensemble
-*	  ├── preprocessed_data
-*	  ├── result
-*         └── model
+      └── src
+          ├── data
+          ├── ensemble
+	  ├── preprocessed_data
+ 	  ├── result
+          └── model
 
 
         
