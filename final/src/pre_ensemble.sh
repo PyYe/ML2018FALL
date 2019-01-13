@@ -1,3 +1,4 @@
+mkdir ./ensemble/data
 cp ./result/test1_notgenerator_TTA_test_submission.csv ./ensemble/data/test1_notgenerator_TTA_test_submission.csv
 cp ./result/test3_notgenerator_densenet201_dense_TTA_test_submission.csv ./ensemble/data/test3_notgenerator_densenet201_dense_TTA_test_submission.csv
 cp ./result/test5_notgenerator_densenet169_dense_TTA_test_submission.csv ./ensemble/data/test5_notgenerator_densenet169_dense_TTA_test_submission.csv

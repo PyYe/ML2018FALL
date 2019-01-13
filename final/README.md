@@ -2,7 +2,8 @@
 windows 10 anaconda3 jupyter notebook python3.6.6
 
 # Download files on dropbox
-bash download.sh
+bash download.sh [data/train] [data/test] [data/train.csv] [data/samplesubmission.csv]
+
 # Folders information
 ./src/data                     將kaggle上的data zips 解壓縮並存在這個資料夾  
 ./src/ensemble                 執行ensemble處  
@@ -48,7 +49,7 @@ bash download.sh
 * test5_notgenerator_densenet169_dense_TTA_test.ipynb
 
 # Ensemble
-將./src/result中的檔案 複製到 ./src/ensemble/data裡
+bash pre_ensemble.sh (將./src/result中的檔案 複製到 ./src/ensemble/data裡)
 執行 ./src/ensemble/ensemble.ipynb
 
 # 最後上傳kaggle檔案
