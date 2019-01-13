@@ -49,7 +49,7 @@ bash download.sh [data/train] [data/test] [data/train.csv] [data/samplesubmissio
 * test5_notgenerator_densenet169_dense_TTA_test.ipynb
 
 # Ensemble
-bash pre_ensemble.sh (將./src/result中的檔案 複製到 ./src/ensemble/data裡)
+在./src 裡執行 bash pre_ensemble.sh (將./src/result中的檔案 複製到 ./src/ensemble/data裡)
 執行 ./src/ensemble/ensemble.ipynb
 
 # 最後上傳kaggle檔案
