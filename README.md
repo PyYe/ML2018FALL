@@ -3,9 +3,9 @@ Machine Learning (2018 Fall Semester) by (Pei-Yuan Wu, Hung-yi Lee and Tsungnan 
 * Kaggle username : r06922134_test
 # HW0
 * [Slide](https://docs.google.com/presentation/d/1FXGKzeapNtSOrLf_L5tPV-EtX80nqlitgqSr0E46DQk/edit)
-Part 1: Github Setup
-Part 2: Linux Setup
-Part 3: Allowed Packages
+* Part 1: Github Setup
+* Part 2: Linux Setup
+* Part 3: Allowed Packages
 # HW1
 PM2.5 Prediction
 * [Slide](https://docs.google.com/presentation/d/1fGj_heYognRaohUJrHEVkS3BDLOS0uutpnTrOiMqhSc/edit?fbclid=IwAR2AcMbCZh-O7L-h8Wi7aPRFgkSD5WD0BupUmXTWZ4gqWG5-vwaKk6Atqxc#slide=id.g428cc584f5_0_0)
